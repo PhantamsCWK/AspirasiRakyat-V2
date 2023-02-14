@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Livewire\Aspirasi;
+use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Home;
+use App\Http\Livewire\Penduduk;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/aspirasi', Aspirasi::class);
+Route::get('/', Home::class);
+Route::get('/home', Home::class)->name('home');
 
+Route::get('/aspirasi', Aspirasi::class)->name('aspirasi');
+
+Route::get('/dashboard', Dashboard::class)->name('dashboard');
+Route::get('/penduduk', Penduduk::class)->name('penduduk');
 

@@ -4,12 +4,12 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class Aspirasi extends Component
+class Home extends Component
 {
     public function render()
     {
-        return view('livewire.aspirasi', [
-            'active' => "aspirasi",
+        return view('livewire.home', [
+            'active' => "home",
         ]);
     }
 }
