@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Aspirasi as ModelsAspirasi;
 use Livewire\Component;
 
 class Aspirasi extends Component
@@ -10,6 +11,7 @@ class Aspirasi extends Component
     {
         return view('livewire.aspirasi', [
             'active' => "aspirasi",
+            'aspirasis' => ModelsAspirasi::all()
         ]);
     }
 }
