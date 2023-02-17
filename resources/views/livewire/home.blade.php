@@ -1,4 +1,4 @@
-<x-navbar :active="$active"/>
+<livewire:navbar-aspirasi :active="$active"/>
 
 <main>
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -136,6 +136,4 @@
     <!-- FOOTER -->
 </main>
 
-<x-footer/>
-
-<x-modal-login/>
+<livewire:modal-login/>

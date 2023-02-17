@@ -20,7 +20,8 @@ class PendudukFactory extends Factory
     public function definition()
     {
         return [
-            'alamat' => Address::state()
+            'alamat' => Address::state(),
+            'nama' =>fake()->name()
         ];
     }
 }

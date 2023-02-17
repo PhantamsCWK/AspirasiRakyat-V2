@@ -8,7 +8,8 @@
         </div>
   
         <div class="modal-body p-5 pt-0">
-          <form class="" method="POST">
+          <form class="" method="POST" action="">
+            @csrf
             <div class="form-floating mb-3">
               <input type="text" name="name" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
               <label for="floatingInput">Username</label>
@@ -23,4 +24,4 @@
         </div>
       </div>
     </div>
-  </div>
+</div>

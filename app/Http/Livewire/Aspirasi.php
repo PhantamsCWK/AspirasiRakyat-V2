@@ -11,7 +11,7 @@ class Aspirasi extends Component
     {
         return view('livewire.aspirasi', [
             'active' => "aspirasi",
-            'aspirasis' => ModelsAspirasi::all()
+            'aspirasis' => ModelsAspirasi::with(['category', 'penduduk'])->get()
         ]);
     }
 }

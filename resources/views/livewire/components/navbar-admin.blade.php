@@ -6,7 +6,7 @@
     <input class="form-control form-control-dark w-100" type="text" aria-label="Search">
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-3" href="../logic/logout.php">Logout</a>
+        <a class="nav-link px-3" wire:click="logout">Logout</a>
       </div>
     </div>
 </header>

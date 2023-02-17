@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('aspirasis', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->enum('status',['menunggu', 'proses', 'selesai']);
             $table->foreignId('nik')->references('nik')->on('penduduks');
             $table->foreignId('category_id')->constrained();
             $table->text('keterangan');
-            $table->text('feedback');
+            $table->text('feedback')->default('');
             $table->timestamps();
         });
     }
