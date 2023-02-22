@@ -2,24 +2,61 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Aspirasi;
+use App\Models\Category;
 use Livewire\Component;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class Dashboard extends Component
 {
-    public function logout(Request $request)
+    public $aspirasis, $idUpdate, $feedback, $categories, $category, $status;
+
+    public function mount()
     {
-        Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+        $this->categories = Category::all();
+        $this->category = "";
     }
+
+    public function setId($id)
+    {
+        $this->idUpdate = $id;
+        $this->emit('openModalFeedback');
+    }
+
+    public function resetform()
+    {
+        $this->idUpdate = "";
+        $this->feedback = "";
+    }
+
+    public function update()
+    {
+        $aspirasi = Aspirasi::find($this->idUpdate);
+
+        switch ($aspirasi->status) {
+            case 'menunggu':
+                $aspirasi->status = "proses";
+                break;
+                case 'proses':
+                $aspirasi->status = "selesai";
+                break;
+        }
+        $aspirasi->feedback = $this->feedback;
+
+        $aspirasi->save();
+
+        $this->emit('closeModal');
+
+        $this->resetform();
+
+        session()->flash('status', 'berhasil');
+
+    }
+
 
     public function render()
     {
-        return view('livewire.admin.dashboard');
+        $this->aspirasis = Aspirasi::where('status', 'LIKE', "%{$this->status}%")->with(['penduduk', 'category'])->when($this->category, fn ($query, $category) => $query->where('category_id', $category))->get();
+
+        return view('livewire.dashboard');
     }
 }

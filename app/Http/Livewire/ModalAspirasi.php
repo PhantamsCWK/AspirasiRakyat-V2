@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Penduduk;
 use App\Models\Aspirasi;
 use App\Models\Category;
 
@@ -18,16 +19,9 @@ class ModalAspirasi extends Component
         $this->category_id = "";
     }
 
-    public function submit() {
-        Aspirasi::create([
-            'nik' => $this->nik,
-            'keterangan' => $this->keterangan,
-            'category_id' => $this->category_id,
-            'status' => 'menunggu',
-        ]);
+    
 
-        return redirect('/home');
-    }
+    
 
     public function render()
     {

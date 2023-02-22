@@ -18,6 +18,6 @@ class Aspirasi extends Model
     
         public function penduduk()
         {
-            return $this->belongsTo(Penduduk::class);
+            return $this->belongsTo(Penduduk::class, 'nik', 'nik');
         }
 }

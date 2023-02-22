@@ -7,10 +7,12 @@ use Livewire\Component;
 
 class Penduduk extends Component
 {
+    public $penduduks;
+
+
     public function render()
     {
-        return view('livewire.admin.penduduk',[
-            'penduduks' => ModelsPenduduk::all()
-        ]);
+        $this->penduduks = ModelsPenduduk::all();
+        return view('livewire.penduduk');
     }
 }

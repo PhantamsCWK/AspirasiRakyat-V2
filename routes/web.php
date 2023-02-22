@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Livewire\Aspirasi;
-use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Home;
+use App\Http\Livewire\Aspirasi;
 use App\Http\Livewire\Penduduk;
-use App\http\Controllers\loginController;
+use App\Http\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
+use App\http\Controllers\loginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Home::class);
 Route::get('/home', Home::class)->name('home');
-Route::post('/home', [loginController::class, 'login']);
+Route::controller(loginController::class)->group(function () {
+    Route::post('/', 'login');
+    Route::post('/home', 'login');
+});
 
 Route::get('/aspirasi', Aspirasi::class)->name('aspirasi');
 

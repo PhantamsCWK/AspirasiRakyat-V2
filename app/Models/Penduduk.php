@@ -11,6 +11,6 @@ class Penduduk extends Model
 
     public function aspirasi()
     {
-        return $this->hasMany(Aspirasi::class);
+        return $this->hasMany(Aspirasi::class, 'nik');
     }
 }

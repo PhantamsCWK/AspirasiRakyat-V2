@@ -3,8 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Faker\Provider\id_ID\Person;
-use Faker\Provider\id_ID\Address;
 
 
 /**
@@ -20,7 +18,8 @@ class PendudukFactory extends Factory
     public function definition()
     {
         return [
-            'alamat' => Address::state(),
+            'nik' => fake()->nik(),
+            'alamat' => fake()->state(),
             'nama' =>fake()->name()
         ];
     }

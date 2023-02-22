@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\User;
+use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Penduduk;
 use Illuminate\Database\Seeder;
@@ -18,12 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        Admin::create([
             'name' => 'Admin',
-            'password' => '12345'
+            'password' => password_hash('12345',PASSWORD_DEFAULT)
         ]);
 
-        Penduduk::factory(150)->create();
+        Penduduk::factory(10)->create();
 
         Category::factory(5)->create();
 
