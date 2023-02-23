@@ -1,8 +1,8 @@
 <div>
-    <livewire:navbar-admin />
+    @include('livewire.components.navbar-admin')
     <div class="container-fluid">
         <div class="row">
-            <livewire:sidebar-admin />
+          @include('livewire.components.sidebar-admin')
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
                 <h1 class="h2">Aspirasi</h1>

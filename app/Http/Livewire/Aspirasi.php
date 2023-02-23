@@ -9,9 +9,17 @@ use App\Models\Aspirasi as ModelsAspirasi;
 
 class Aspirasi extends Component
 {
-    public $aspirasis, $active, $nik, $keterangan, $category_id, $categories;
+    public $categories, $aspirasis = [], $nik, $keterangan, $category_id, $searchNIK;
+
+    protected $rules = [
+        'nik' => 'required',
+        'category_id' => 'required',
+        'keterangan' => 'required'
+    ];
 
     public function submit() {
+        $this->validate();
+
         if($this->isNIKExist($this->nik)) {
             ModelsAspirasi::create([
                 'nik' => $this->nik,
@@ -24,15 +32,23 @@ class Aspirasi extends Component
         return redirect('/aspirasi')->with('error', 'nik tidak terdaftar');
     }
 
+    public function findAspirasi()
+    {
+        $this->aspirasis = ModelsAspirasi::where('nik', $this->searchNIK)->with(['category', 'penduduk'])->get();
+    }
+
     public function isNIKExist($nik) {
-        return Penduduk::firstWhere('nik', $nik) !== null ? true : false;
+        // dd(Penduduk::where('nik', $nik)->get()->count());
+        return Penduduk::where('nik', $nik)->get()->count() === 0 ? false : true;
     }
 
     public function render()
     {
-        $this->categories = Category::select('id', 'name')->get();
-        $this->aspirasis = ModelsAspirasi::all();
-        $this->active = "aspirasi";
-        return view('livewire.aspirasi');
+        $this->categories = Category::all();
+        // $this->aspirasis = ModelsAspirasi::with(['category', 'penduduk'])->get();
+
+        return view('livewire.aspirasi', [
+            'active' => "aspirasi"
+        ]);
     }
 }

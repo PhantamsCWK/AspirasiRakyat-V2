@@ -1,6 +1,7 @@
-@include('livewire.components.navbar-aspirasi')
-
-<main>
+<div>
+  @include('livewire.components.modal-login')
+  @include('livewire.components.navbar-aspirasi')
+  <main>
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -32,7 +33,7 @@
         </div>
         <div class="carousel-item">
           <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-  
+          
           <div class="container">
             <div class="carousel-caption text-end">
               <h1>One more for good measure.</h1>
@@ -51,8 +52,8 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-</main>
+  </main>
+</div>
 
-@include('livewire.components.modal-login')
 
 

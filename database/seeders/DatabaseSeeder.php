@@ -25,7 +25,17 @@ class DatabaseSeeder extends Seeder
 
         Penduduk::factory(10)->create();
 
-        Category::factory(5)->create();
+        Category::create([
+            'name' => 'Kebersihan',
+        ]);
+
+        Category::create([
+            'name' => 'Keamanan',
+        ]);
+
+        Category::create([
+            'name' => 'Fasilitas',
+        ]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

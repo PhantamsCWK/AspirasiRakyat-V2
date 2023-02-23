@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use App\Models\Aspirasi;
 use App\Models\Category;
-use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Dashboard extends Component
 {
-    public $aspirasis, $idUpdate, $feedback, $categories, $category, $status;
+    public $aspirasis, $idUpdate, $feedback = "", $categories, $category, $status;
 
     public function mount()
     {
@@ -49,13 +50,24 @@ class Dashboard extends Component
         $this->resetform();
 
         session()->flash('status', 'berhasil');
+    }
 
+    public function logout()
+    {
+        Auth::logout();
+ 
+        session()->invalidate();
+ 
+        session()->regenerateToken();
+ 
+        return redirect('/');
     }
 
 
     public function render()
     {
-        $this->aspirasis = Aspirasi::where('status', 'LIKE', "%{$this->status}%")->with(['penduduk', 'category'])->when($this->category, fn ($query, $category) => $query->where('category_id', $category))->get();
+        $this->aspirasis = Aspirasi::where('status', 'LIKE', "%{$this->status}%")->with(['penduduk', 'category'])
+                            ->when($this->category, fn ($query, $category) => $query->where('category_id', $category))->latest()->get();
 
         return view('livewire.dashboard');
     }
