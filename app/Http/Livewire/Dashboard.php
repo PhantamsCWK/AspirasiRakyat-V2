@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Dashboard extends Component
 {
-    public $aspirasis, $idUpdate, $feedback = "", $categories, $category, $status;
+    public $aspirasis, $idUpdate, $feedback = "", $categories, $category, $status, $searchDate;
 
     public function mount()
     {
@@ -67,7 +67,8 @@ class Dashboard extends Component
     public function render()
     {
         $this->aspirasis = Aspirasi::where('status', 'LIKE', "%{$this->status}%")->with(['penduduk', 'category'])
-                            ->when($this->category, fn ($query, $category) => $query->where('category_id', $category))->latest()->get();
+                            ->when($this->category, fn ($query, $category) => $query->where('category_id', $category))
+                            ->when($this->searchDate, fn ($query, $searchDate) => $query->whereDate('created_at', $searchDate) )->get();
 
         return view('livewire.dashboard');
     }

@@ -14,6 +14,7 @@
               </div>
             @endif
             <div class="d-flex justify-start align-items-center gap-2 my-3">
+              <input type="date" wire:model="searchDate" class="form-control">
               <select class="form-select form-select" aria-label=".form-select-sm example" wire:model="category">
                 <option selected value="">categories</option>
                 @foreach($categories as $c)
